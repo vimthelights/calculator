@@ -6,9 +6,10 @@
     "node": ">=6.13.0"
   },
   "scripts": {
-    "start": "nodemon server/index.js",
-    "react-dev": "webpack -d --watch",
-    "seed": "node db/seed.js",
+    "start": "webpack -d && nodemon server",
+    "build": "webpack -d",
+    "build:watch": "webpack -d --watch",
+    "db:seed": "node db/seed.js",
     "test": "jest --coverage",
     "docker-start": "node db/seed.js & webpack & node server/index.js"
   },
@@ -29,6 +30,7 @@
     "mongoose": "^5.11.11",
     "nodemon": "^2.0.4",
     "numeral": "^2.0.6",
+    "pg": "^8.5.1",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "styled-components": "^5.2.0",
