@@ -1,7 +1,10 @@
-# Project Name
+# Mortgage Calulator
 
-This is an affordability calculator that calculates how much you can afford to spend on a house, and estimates the monthly mortgage payment.
-This is done by taking home price, down payment, and interest rate into account.
+This is an affordability estimator that calculates how much propsective home buers can expect to pay in monthly mortgage payments, broken down by
+* Principle & Interest
+* Property Taxes
+* Home insurance
+*
 
 ## Related Projects
 
