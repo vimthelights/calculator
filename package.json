@@ -9,6 +9,8 @@
     "start": "webpack -d && nodemon server",
     "build": "webpack -d",
     "build:watch": "webpack -d --watch",
+    "db:build": "node db/builddb.js",
+    "db:schema": "node db/schema.js",
     "db:seed": "node db/seed.js",
     "test": "jest --coverage",
     "docker-start": "node db/seed.js & webpack & node server/index.js"
