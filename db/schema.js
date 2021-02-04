@@ -28,13 +28,13 @@ const rq = pg.returnQuery(client, "SELECT * FROM information_schema.tables WHERE
 console.log(rq);
 
 
-// const createTable = async (createTableQuery) => {
-//   await client.query(createTableQuery)
-//     .then(res => console.log('Table is successfully created'))
-//     .catch(err => console.error(err));
-//   await client.end();
-// };
-// // createTable(createHousesTableQuery);
+const createTable = async (createTableQuery) => {
+  await client.query(createTableQuery)
+    .then(res => console.log('Table is successfully created'))
+    .catch(err => console.error(err));
+  await client.end();
+};
+// createTable(createHousesTableQuery);
 
 // const conditionallyCreateTable = async (createTableQuery) => {
 //   try {
