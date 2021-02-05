@@ -11,7 +11,7 @@ const port = 3003;
 const homes = require('./routes/homes');
 const mortgage = require('./routes/mortgage');
 
-const pg = require('../db/db.js');
+// const pg = require('../db/db.js');
 
 const url = process.env.CONNECTIONSTRING || 'mongodb://localhost/affordability';
 // db
