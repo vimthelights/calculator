@@ -1,70 +1,23 @@
-/* eslint-disable func-names */
-/* eslint-disable no-console */
-const mongoose = require('mongoose');
 const faker = require('faker');
-const Home = require('../models/homes.js');
-const Mortgage = require('../models/mortgage.js');
+const csv = require('./csvUtils');
 
-// db
-const url = process.env.CONNECTIONSTRING || 'mongodb://localhost/affordability';
-mongoose.connect(url, { useNewUrlParser: true, useUnifiedTopology: true });
-const db = mongoose.connection;
-db.once('open', () => {
-  console.log('Database connected:');
-});
-db.on('error', (err) => {
-  console.error('connection error', err);
-});
-
-// seed
-for (let i = 0; i < 100; i += 1) {
-  const price = faker.finance.amount(250000, 2000000, 0);
-  const homeID = i;
-  Home.create({
-    home_id: homeID,
-    price,
-  });
-}
-
-const randomOffering = function () {
-  const offeringPossibilities = ['15 Year Fixed', '30 Year Fixed', '5/1 Arm'];
-  const randomIdx = Math.floor(Math.random() * offeringPossibilities.length);
-  return offeringPossibilities[randomIdx];
-};
-
-const generateMortgage = function () {
-  const offerings = [];
-
-  const randumb = Math.floor(Math.random() * 10);
-  for (let i = 0; i < randumb; i += 1) {
-    offerings.push({
-      terms: randomOffering(),
-      rate: faker.finance.amount(2, 5, 3),
-      apr: faker.finance.amount(2, 5, 3),
-      fees: faker.finance.amount(0, 550, 0),
+const start = new Date();
+const generateHouseData = (n) => {
+  const houses = [];
+  for (let i = 0; i < n; i += 1) {
+    houses.push({
+      asking_price: Math.round(faker.finance.amount(95250, 10500000)),
+      address_line1: faker.address.streetAddress(),
+      address_city: faker.address.city(),
+      address_state: faker.address.stateAbbr(),
+      address_zip: faker.address.zipCode().slice(0, 5),
     });
   }
-  return offerings;
+  return houses;
 };
-
-const genReviews = function () {
-  const reviews = [];
-  const randumb = Math.floor(Math.random() * 100);
-  for (let i = 0; i < randumb; i += 1) {
-    reviews.push({
-      rating: faker.finance.amount(0, 5, 0),
-    });
-  }
-  return reviews;
-};
-
-for (let i = 0; i < 10; i += 1) {
-  const data = {
-    name: faker.company.companyName(),
-    mortgage_id: i,
-    favorite: false,
-    offerings: generateMortgage(),
-    reviews: genReviews(),
-  };
-  Mortgage.create(data);
-}
+const numberToGenerate = 100000000;
+generateHouseData(numberToGenerate);
+const end = new Date();
+const seconds = (end.getTime() - start.getTime()) / 1000;
+const minutes = Math.round(((seconds / 60) + Number.EPSILON) * 100) / 100;
+csv.appendToCsv('./db/speed_tests.csv', ['houses', 'generate data', numberToGenerate, seconds, minutes]);
