@@ -15,7 +15,7 @@ const appendToCsv = (filePath, row) => {
     filePath,
     `\n ${row.join(',')}`,
     { flag: 'a' },
-    (err) => { console.log(err || 'done'); },
+    (err) => { console.log(err || '==== ===='); },
   );
 };
 
