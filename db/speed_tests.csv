@@ -1,0 +1,10 @@
+table,action,number_of_records_seeded,seconds,minutes
+ houses,generate data,1,0.001,0
+ houses,generate data,1,0.001,0
+ houses,generate data,10,0.002,0
+ houses,generate data,100,0.006,0
+ houses,generate data,1000,0.045,0
+ houses,generate data,10000,0.365,0.01
+ houses,generate data,100000,3.233,0.05
+ houses,generate data,1000000,33.343,0.56
+ houses,generate data,10000000,341.913,5.7

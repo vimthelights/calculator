@@ -1,0 +1,7 @@
+table,action,number_of_records,seconds,minutes
+ houses,generate data,numberPLACEHOLDER,0.018,0
+ houses,generate data,numberPLACEHOLDER,0.018,0
+ houses,generate data,numberPLACEHOLDER,0.022,0
+ houses,generate data,250,0.02,0
+ houses,generate data,2500,0.024,0
+ houses,generate data,25000,0.018,0
