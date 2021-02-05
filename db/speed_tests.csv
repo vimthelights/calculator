@@ -1,4 +1,4 @@
-table,action,number_of_records_seeded,seconds_to_seed,minutes_to_seed
+table,action,number_of_records_seeded,seconds,minutes
  houses,generate data,1,0.001,0
  houses,generate data,1,0.001,0
  houses,generate data,10,0.002,0
