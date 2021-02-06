@@ -22,3 +22,6 @@ coverage
 build/
 dist/
 public/
+
+# csvs & data
+*.csv

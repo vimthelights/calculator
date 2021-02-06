@@ -53,7 +53,7 @@ const generateHouse = () => (
 const writeHouses = fs.createWriteStream('./db/seed/csvs/houses.csv');
 writeHouses.write('asking_price,address_line1,address_city,address_state,address_zip\n', encoding);
 
-const housesToSeed = 10000000;
+const housesToSeed = 250;
 writeNRows(writeHouses, housesToSeed, generateHouse, encoding, () => { writeHouses.end(); });
 
 // TAXES //
@@ -63,7 +63,7 @@ fs.readFile('./db/seed/state_abbreviations.csv', async (err, data) => {
     return;
   }
   const rows = await neatCsv(data);
-  const states = await rows.map((row) => (`${Object.values(row)[0]},${faker.finance.amount(0.27, 2.47, 2)}\n`));
+  const states = await rows.map((row) => (`${Object.values(row)[0]},${faker.finance.amount(0.27, 2.47, 2)}`));
   writeRowsFromArray('./db/seed/csvs/taxes.csv', 'state,effective_rate\n', states);
 });
 
