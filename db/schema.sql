@@ -1,10 +1,9 @@
-CREATE DATABASE trulia;
+-- CREATE DATABASE trulia;
 
 CREATE TABLE homes(
     id SERIAL PRIMARY KEY,
     asking_price DECIMAL NOT NULL,
     address_line1 VARCHAR(45),
-    address_line2 VARCHAR(8),
     address_city VARCHAR(45),
     address_state VARCHAR(2) NOT NULL,
     address_zip INT
@@ -19,6 +18,6 @@ CREATE TABLE loans(
 
 CREATE TABLE taxes(
   id SERIAL PRIMARY KEY,
-  state_abbrev VARCHAR(2) NOT NULL,
-  effective_rate DECIMAL NOT NULL
+  state_abr VARCHAR(2) NOT NULL,
+  rate DECIMAL NOT NULL
 );

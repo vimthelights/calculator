@@ -11,9 +11,19 @@
     "build:watch": "webpack -d --watch",
     "db:build": "node db/builddb.js",
     "db:schema": "node db/schema.js",
-    "db:seed": "node db/seed.js",
     "test": "jest --coverage",
-    "docker-start": "node db/seed.js & webpack & node server/index.js"
+    "docker-start": "node db/seed.js & webpack & node server/index.js",
+    "db:init:db": "createdb trulia",
+    "db:init:tables": "psql < db/schema.sql -U attack -d trulia",
+    "db:init:data": "node db/seed/generateData.js",
+    "db:seed:loans": "psql < db/seed/seedLoans.sql -d trulia",
+    "db:seed:taxes": "psql < db/seed/seedTaxes.sql -d trulia",
+    "db:seed:homes": "psql < db/seed/seedHomes.sql -d trulia",
+    "db:init": "npm run db:init:db && npm run db:init:tables",
+    "db:data": "npm run db:init:data",
+    "db:seed": "npm run db:seed:loans && npm run db:seed:taxes && npm run db:seed:homes",
+    "db:set": "npm run db:init:db && npm run db:init:tables && npm run db:init:data && npm run db:seed:loans && npm run db:seed:taxes && npm run db:seed:homes",
+    "db:reset": "psql < db/seed/dbreset.sql -d trulia"
   },
   "dependencies": {
     "@babel/core": "^7.12.10",

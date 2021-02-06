@@ -53,7 +53,7 @@ const generateHouse = () => (
 const writeHouses = fs.createWriteStream('./db/seed/csvs/homes.csv');
 writeHouses.write('asking_price,address_line1,address_city,address_state,address_zip\n', encoding);
 
-const housesToSeed = 100;
+const housesToSeed = 10000000;
 writeNRows(writeHouses, housesToSeed, generateHouse, encoding, () => { writeHouses.end(); });
 
 // TAXES //
