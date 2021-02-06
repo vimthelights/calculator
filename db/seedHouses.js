@@ -23,6 +23,7 @@ const writeNRowsToCsv = async (filePath, headers, n, rowBuilder) => {
       i += 1;
       if (i === n - 1) {
         writer.write(`${i},${rowBuilder()}`, 'utf-8', () => writer.end());
+        // writer.write(`${rowBuilder()}`, 'utf-8', () => writer.end());
       } else {
         proceed = writer.write(`${i},${rowBuilder()}`, 'utf-8');
       }
@@ -34,25 +35,31 @@ const writeNRowsToCsv = async (filePath, headers, n, rowBuilder) => {
   write();
 };
 
-// writeNRowsToCsv(
-//   './db/houses.csv',
-//   'asking_price,address_line1,address_city,address_state,address_zip\n',
-//   1000000,
-//   generateHouseRowAsCsvString,
-// );
-
-// const timedWriter = bench.timeAnything(writeNRowsToCsv);
+// const timedWriter = bench.timeCsvRowWriting(writeNRowsToCsv, './db/speed_tests2.csv');
 // timedWriter(
 //   './db/houses.csv',
 //   'asking_price,address_line1,address_city,address_state,address_zip\n',
-//   250,
+//   10000000,
 //   generateHouseRowAsCsvString,
 // );
 
-const timedWriter = bench.timeCsvRowWriting(writeNRowsToCsv);
-timedWriter(
-  './db/houses.csv',
-  'asking_price,address_line1,address_city,address_state,address_zip\n',
-  25000,
+// const records = 100000;
+// const timedWriter = bench.timeAnythingAndStoreToCsv(
+//   writeNRowsToCsv,
+//   './db/speed_tests3.csv',
+//   'generate fake data',
+//   'houses',
+//   records,
+// );
+
+// timedWriter(
+//   './db/houses.csv',
+//   'asking_price,address_line1,address_city,address_state,address_zip\n',
+//   records,
+//   generateHouseRowAsCsvString,
+// );
+
+module.exports = {
   generateHouseRowAsCsvString,
-);
+  writeNRowsToCsv,
+};

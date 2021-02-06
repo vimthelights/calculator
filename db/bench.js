@@ -12,7 +12,7 @@ const timeAnything = (func) => (
   }
 );
 
-const timeCsvRowWriting = (func) => {
+const timeCsvRowWriting = (func, pathToMetricsCsv) => {
   let rows;
   return (
     async (...rest) => {
@@ -23,7 +23,7 @@ const timeCsvRowWriting = (func) => {
       const seconds = await (end.getTime() - start.getTime()) / 1000;
       const minutes = await Math.round(((seconds / 60) + Number.EPSILON) * 100) / 100;
       CSV.appendToCsv(
-        './db/speed_tests2.csv',
+        pathToMetricsCsv,
         ['houses', 'generate data', rows, seconds, minutes],
       );
       console.log('==== ====');
@@ -33,7 +33,27 @@ const timeCsvRowWriting = (func) => {
   );
 };
 
+const timeAnythingAndStoreToCsv = (func, csvPath, action, table, numberOfRecords) => {
+  const timedFunction = async (...rest) => {
+    const start = await new Date();
+    await func(...rest);
+    const end = new Date();
+    const seconds = (end.getTime() - start.getTime()) / 1000;
+    console.log(seconds);
+    const minutes = Math.round(((seconds / 60) + Number.EPSILON) * 100) / 100;
+    CSV.appendToCsv(
+      csvPath,
+      [action, table, numberOfRecords, seconds, minutes],
+    );
+
+    // console.log('Run took ', seconds, 'secs');
+    // console.log('       = ', minutes, 'mins');
+  };
+  return timedFunction;
+};
+
 module.exports = {
   timeAnything,
   timeCsvRowWriting,
+  timeAnythingAndStoreToCsv,
 };

@@ -1,21 +1,21 @@
 const fs = require('fs');
 
-const createCsv = (filePath, headers) => {
-  fs.writeFile(
-    filePath,
-    headers.join(','),
-    // { flag: 'a+' },
-    (err) => { console.log(err || 'done'); },
-  );
-};
+// const createCsv = (filePath, headers) => {
+//   fs.writeFile(
+//     filePath,
+//     headers.join(','),
+//     // { flag: 'a+' },
+//     (err) => { console.log(err || 'done'); },
+//   );
+// };
 // createCsv('./db/speed_tests.csv', ['table', 'action', 'number_of_records_seeded', 'seconds_to_seed', 'minutes_to_seed']);
 
-const appendToCsv = (filePath, row) => {
-  fs.writeFile(
+const appendToCsv = async (filePath, row) => {
+  await fs.writeFile(
     filePath,
-    `\n ${row.join(',')}`,
+    `${row.join(',')}\n`,
     { flag: 'a' },
-    (err) => { console.log(err || '==== ===='); },
+    async (err) => { await console.log(err || '==== ===='); },
   );
 };
 
