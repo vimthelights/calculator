@@ -10,6 +10,7 @@ const app = express();
 const port = 3003;
 const homes = require('./routes/homes');
 const mortgage = require('./routes/mortgage');
+const api = require('./routes/api');
 
 // const pg = require('../db/db.js');
 
@@ -29,5 +30,6 @@ app.use('/', express.static(path.join(__dirname, '../client/dist')));
 // routing
 app.use('/homes', homes);
 app.use('/mortgage', mortgage);
+app.use('/api', api);
 
 app.listen(port, () => console.log(`connected on ${port}`));
