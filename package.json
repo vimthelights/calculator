@@ -7,6 +7,8 @@
   },
   "scripts": {
     "start": "webpack -d && nodemon server",
+    "prod:seed": "node db/oldSeed.js",
+    "prod:start": "webpack -p && node server",
     "build": "webpack -d",
     "build:watch": "webpack -d --watch",
     "db:build": "node db/builddb.js",
