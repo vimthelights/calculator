@@ -25,3 +25,4 @@ public/
 
 # csvs & data
 *.csv
+specs/load_tests/

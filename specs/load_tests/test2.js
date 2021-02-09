@@ -28,6 +28,7 @@ export let options = {
     { duration: '1m', target: 200 }, // scale down. Recovery stage.
   ],
 };
+
 export default function () {
   let randomNumber = Math.floor(Math.random() * (800000 - 1 + 1) + 1);
   let res = http.get(`http://localhost:3003/api/homes/${randomNumber}`);
