@@ -8,8 +8,13 @@ const client = new Client({
   port: 5432,
 });
 client.connect();
+const randomHomeId = client.query('SELECT id FROM homes ORDER BY random() LIMIT 1;')
 
 // HOMES
+const getRandomHome = async () => (
+  client.query(`SELECT * FROM homes WHERE id=${randomHomeId};`)
+);
+
 const getHome = async (id) => (
   client.query(`SELECT * FROM homes WHERE id=${id};`)
 );
@@ -56,6 +61,7 @@ const getLoans = async () => (
 );
 
 module.exports = {
+  client,
   getHome,
   postHome,
   patchHome,
