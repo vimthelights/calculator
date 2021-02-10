@@ -25,7 +25,8 @@
     "db:data": "npm run db:init:data",
     "db:seed": "npm run db:seed:loans && npm run db:seed:taxes && npm run db:seed:homes",
     "db:set": "npm run db:init:db && npm run db:init:tables && npm run db:init:data && npm run db:seed:loans && npm run db:seed:taxes && npm run db:seed:homes",
-    "db:reset": "psql < db/seed/dbreset.sql -d trulia"
+    "db:reset": "psql < db/seed/dbreset.sql -d trulia",
+    "docker:start": "node db/seed.js && webpack && node server"
   },
   "dependencies": {
     "@babel/core": "^7.12.10",
@@ -33,7 +34,7 @@
     "@babel/preset-env": "^7.12.11",
     "@babel/preset-react": "^7.12.10",
     "@babel/runtime": "^7.11.2",
-    "axios": "^0.20.0",
+    "axios": "^0.21.1",
     "babel-jest": "^26.6.3",
     "babel-loader": "^8.2.2",
     "body-parser": "^1.19.0",
@@ -46,6 +47,7 @@
     "faker": "^5.1.0",
     "mongoose": "^5.11.11",
     "neat-csv": "^6.0.1",
+    "newrelic": "^7.1.1",
     "nodemon": "^2.0.4",
     "numeral": "^2.0.6",
     "pg": "^8.5.1",
@@ -69,6 +71,7 @@
     "eslint-plugin-react-hooks": "^4.2.0",
     "jest": "^26.4.2",
     "jest-environment-enzyme": "^7.1.2",
-    "jest-enzyme": "^7.1.2"
+    "jest-enzyme": "^7.1.2",
+    "k6": "^0.0.0"
   }
 }

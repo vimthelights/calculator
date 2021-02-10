@@ -25,3 +25,4 @@ public/
 
 # csvs & data
 *.csv
+loadTest.js
