@@ -18,11 +18,11 @@ const api = require('./routes/api');
 //
 // //MONGOOSE
 //
-// const mongoose = require('mongoose');
-// const url = process.env.CONNECTIONSTRING || 'mongodb://localhost/affordability';
-// // db
-// mongoose.connect(url, { useNewUrlParser: true, useUnifiedTopology: true })
-//   .then(() => console.log('connecting to MongoDB ..'));
+const mongoose = require('mongoose');
+const url = process.env.CONNECTIONSTRING || 'mongodb://localhost/affordability';
+// db
+mongoose.connect(url, { useNewUrlParser: true, useUnifiedTopology: true })
+  .then(() => console.log('connecting to MongoDB ..'));
 
 // parse
 app.use(cors());
