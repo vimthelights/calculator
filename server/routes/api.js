@@ -4,6 +4,12 @@ const api = require('../../db/pg_models/api.js');
 const router = express.Router();
 
 // HOMES
+router.get('/homes/random', (req, res) => {
+  api.getRandomHome()
+    .then((home) => { res.status(200).send(home.rows[0] || { missingId: `No home with id ${req.params.id} exists.` }); })
+    .catch((err) => { res.status(400).send(err); });
+});
+
 router.get('/homes/:id', (req, res) => {
   api.getHome(req.params.id)
     .then((home) => { res.status(200).send(home.rows[0] || { missingId: `No home with id ${req.params.id} exists.` }); })
