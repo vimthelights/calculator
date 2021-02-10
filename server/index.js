@@ -1,9 +1,10 @@
+require('newrelic');
 require('dotenv').config();
 require('newrelic');
 const express = require('express');
 const path = require('path');
 const bodyParser = require('body-parser');
-const mongoose = require('mongoose');
+
 const cors = require('cors');
 
 const app = express();
@@ -14,10 +15,14 @@ const api = require('./routes/api');
 
 // const pg = require('../db/db.js');
 
-const url = process.env.CONNECTIONSTRING || 'mongodb://localhost/affordability';
-// db
-mongoose.connect(url, { useNewUrlParser: true, useUnifiedTopology: true })
-  .then(() => console.log('connecting to MongoDB ..'));
+//
+// //MONGOOSE
+//
+// const mongoose = require('mongoose');
+// const url = process.env.CONNECTIONSTRING || 'mongodb://localhost/affordability';
+// // db
+// mongoose.connect(url, { useNewUrlParser: true, useUnifiedTopology: true })
+//   .then(() => console.log('connecting to MongoDB ..'));
 
 // parse
 app.use(cors());

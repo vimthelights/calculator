@@ -9,7 +9,11 @@ exports.config = {
   /**
    * Array of application names.
    */
+<<<<<<< HEAD
   app_name: ['sdc2'],
+=======
+  app_name: ['SDC_calculator'],
+>>>>>>> main
   /**
    * Your New Relic license key.
    */
