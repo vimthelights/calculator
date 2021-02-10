@@ -45,9 +45,13 @@ class App extends Component {
   }
 
   async componentDidMount() {
-    const randomIdx = Math.floor(Math.random() * 100);
-    const { data } = await axios.get(`/homes/${randomIdx}`);
-    this.handlePriceChange(data.price);
+    // const randomIdx = Math.floor(Math.random() * 100);
+    // const { data } = await axios.get(`/homes/${randomIdx}`);
+    // this.handlePriceChange(data.price);
+
+    const randomIdx = Math.floor(Math.random() * 10000000);
+    const { data } = await axios.get(`/api/homes/${randomIdx}`);
+    this.handlePriceChange(data.asking_price);
   }
 
   handleInterestChange(interestRate) {
