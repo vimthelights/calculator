@@ -6,7 +6,7 @@ const Home = require('../models/homes.js');
 const Mortgage = require('../models/mortgage.js');
 
 // db
-const url = process.env.CONNECTIONSTRING || 'mongodb://localhost/affordability';
+const url = process.env.mongo_url || 'mongodb://localhost/affordability';
 mongoose.connect(url, { useNewUrlParser: true, useUnifiedTopology: true });
 const db = mongoose.connection;
 db.once('open', () => {

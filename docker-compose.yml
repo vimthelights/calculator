@@ -3,15 +3,23 @@ version: '3'
 services:
   frontend:
     environment:
-      CONNECTIONSTRING=mongodb://mongo:27017/
+      mongo_url: mongodb://mongo:27017/
+      # PGUSER: dbuser
+      # PGHOST: database.server.com
+      # PGPASSWORD: secretpassword
+      PGDATABASE: trulia
     build: .
     depends_on:
-      - 'database'
+      - 'mongo_db'
     ports:
       - '30003:3003'
 
-  database:
+  mongo_db:
     image: mongo:latest
+  pg_db:
+    image: postgres:latest
+    ports:
+      - "5432:5432"
 
 ########^^^ sdc_v2 ^^^############
 ########vvv fec_v1 vvv############
