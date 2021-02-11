@@ -14,7 +14,7 @@ const { Client } = require('pg');
 // const port = '5432'
 // const connectionString = `postgresql://dbuser:secretpassword@database.server.com:${port}/${db}`
 
-const connectionString = process.env.DATABASE_URL || "postgres://attack@localhost:5432/trulia";
+const connectionString = process.env.PROD_DATABASE_URL || process.env.DEV_DATABASE_URL;
 const client = new Client({
   connectionString,
 })
