@@ -1,12 +1,23 @@
 const { Client } = require('pg');
 
+// const client = new Client({
+//   user: 'attack',
+//   host: 'localhost',
+//   database: 'trulia',
+//   // password: 'secretpassword',
+//   port: 5432,
+// });
+
+// const user = 'attack';
+// const user = 'attack';
+// const db = 'trulia';
+// const port = '5432'
+// const connectionString = `postgresql://dbuser:secretpassword@database.server.com:${port}/${db}`
+
+const connectionString = process.env.DATABASE_URL || "postgres://attack@localhost:5432/trulia";
 const client = new Client({
-  user: 'attack',
-  host: 'localhost',
-  database: 'trulia',
-  // password: 'secretpassword',
-  port: 5432,
-});
+  connectionString,
+})
 client.connect();
 
 // HOMES

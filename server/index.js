@@ -7,7 +7,7 @@ const bodyParser = require('body-parser');
 const cors = require('cors');
 
 const app = express();
-const port = 3003;
+const port = process.env.PORT || 3003;
 
 const mortgage = require('./routes/mortgage');
 const api = require('./routes/api');

@@ -1,11 +1,25 @@
 FROM node:latest
-ENV NODE_ENV=production
-RUN mkdir -p /src/app
-WORKDIR /src/app
-COPY . /src/app
-RUN npm i --production
+
+WORKDIR /app
+COPY ./package*.json ./
+RUN npm ci
+COPY . .
+RUN chown -R node:node /app
+USER node
+
 EXPOSE 3003
-CMD ["npm", "run", "docker:start"]
+CMD npm start
+
+########^^^ sdc_v3 ^^^############
+
+# FROM node:latest
+# ENV NODE_ENV=production
+# RUN mkdir -p /src/app
+# WORKDIR /src/app
+# COPY . /src/app
+# RUN npm i --production
+# EXPOSE 3003
+# CMD ["npm", "run", "docker:start"]
 ########^^^ sdc_v2 ^^^############
 ########vvv fec_v1 vvv############
 
