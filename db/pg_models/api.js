@@ -1,24 +1,51 @@
-const { Client } = require('pg');
+const { Client, Pool } = require('pg');
+
+// COPIED OVER FROM .ENV ~~~ DEV_DATABASE_URL = "postgres://attack@localhost:5432/trulia"
+// const connectionString = process.env.PROD_DATABASE_URL || process.env.DEV_DATABASE_URL;
+
+
+// const connectionString = "postgres://sdc_db_user:simplebutsecret@172.19.0.2:888/sdc_calculator_db"
+
 
 // const client = new Client({
-//   user: 'attack',
-//   host: 'localhost',
-//   database: 'trulia',
-//   // password: 'secretpassword',
-//   port: 5432,
-// });
+  //   connectionString,
+  // })
 
-// const user = 'attack';
-// const user = 'attack';
-// const db = 'trulia';
-// const port = '5432'
-// const connectionString = `postgresql://dbuser:secretpassword@database.server.com:${port}/${db}`
 
-const connectionString = process.env.PROD_DATABASE_URL || process.env.DEV_DATABASE_URL;
-const client = new Client({
-  connectionString,
-})
-client.connect();
+  const client = new Client({
+    // host: '71.202.124.117',
+    // host: 5432,
+    // host: '172.19.0.1',
+    // host: '172.19.0.2',
+    // host: 'public-ip-server',
+    // host: 'localhost',
+    host: '0.0.0.0',
+    // host: 'postgres',
+    // host: 'dockerized_pg',
+    // host : 'b04e54ffc21e',
+    // host: 'database_toaster_dockerized_pg_1',
+    // host: '',
+    // port: '888',
+    port: 5432,
+    user: 'sdc_db_user',
+    password: 'simplebutsecret',
+    database: 'sdc_calculator_db'
+  })
+  client.connect();
+
+
+// const client = new Pool({
+//   host: '172.19.0.2',
+//   // host: "172.19.0.1",
+//   // host: '0.0.0.0',
+//   // host: "77aed7533cd3",
+//   port: '888',
+//   user: 'sdc_db_user',
+//   password: 'simplebutsecret',
+//   database: 'sdc_calculator_db'
+// })
+// client.connect()
+
 
 // HOMES
 const getRandomHome = async () => {
