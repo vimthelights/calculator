@@ -1,25 +1,54 @@
-version: '3'
+version: "3"
 
 services:
-  frontend:
-    environment:
-      mongo_url: mongodb://mongo:27017/
-      # PGUSER: dbuser
-      # PGHOST: database.server.com
-      # PGPASSWORD: secretpassword
-      PGDATABASE: trulia
+  app:
     build: .
     depends_on:
-      - 'mongo_db'
+      - postgres
+    environment:
+      DATABASE_URL: postgres://attack@postgres:5432/trulia
+      NODE_ENV: development
+      PORT: 3003
     ports:
-      - '30003:3003'
+      - "3003:3003"
+    command: npm run docker:start
+    volumes:
+      - .:/app/
+      - /app/node_modules
 
-  mongo_db:
-    image: mongo:latest
-  pg_db:
+  postgres:
     image: postgres:latest
     ports:
-      - "5432:5432"
+      - "35432:5432"
+    environment:
+      POSTGRES_USER: attack
+      # POSTGRES_PASSWORD: pass
+      POSTGRES_DB: trulia
+
+########^^^ sdc_v3 ^^^############
+
+# version: '3'
+
+# services:
+#   frontend:
+#     environment:
+#       mongo_url: mongodb://mongo:27017/
+#       # PGUSER: dbuser
+#       # PGHOST: database.server.com
+#       # PGPASSWORD: secretpassword
+#       PGDATABASE: trulia
+#     build: .
+#     depends_on:
+#       - 'mongo_db'
+#     ports:
+#       - '30003:3003'
+
+#   mongo_db:
+#     image: mongo:latest
+#   pg_db:
+#     image: postgres:latest
+#     ports:
+#       - "5432:5432"
 
 ########^^^ sdc_v2 ^^^############
 ########vvv fec_v1 vvv############

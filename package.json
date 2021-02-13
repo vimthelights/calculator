@@ -26,7 +26,7 @@
     "db:seed": "npm run db:seed:loans && npm run db:seed:taxes && npm run db:seed:homes",
     "db:set": "npm run db:init:db && npm run db:init:tables && npm run db:init:data && npm run db:seed:loans && npm run db:seed:taxes && npm run db:seed:homes",
     "db:reset": "psql < db/seed/dbreset.sql -d trulia",
-    "docker:start": "node db/oldSeed.js & webpack -p & node server"
+    "docker:start": "webpack -p && node server"
   },
   "dependencies": {
     "@babel/core": "^7.12.10",

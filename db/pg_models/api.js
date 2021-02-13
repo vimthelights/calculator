@@ -1,19 +1,37 @@
-const { Client } = require('pg');
+const { Client, Pool } = require('pg');
 
-const client = new Client({
-  user: 'attack',
-  host: 'localhost',
-  database: 'trulia',
-  // password: 'secretpassword',
-  port: 5432,
+  const client = new Client({
+    host: process.env.DBHOST,
+    port: process.env.DBPORT,
+    user: process.env.DBUSER,
+    password: process.env.DBPASSWORD,
+    database: process.env.DB,
+  });
+
+//
+// // LOCALHOST CONNECTION
+//
+// const client = new Client({
+//   host: 'localhost',
+//   port: 5432,
+//   user: 'attack',
+//   database: 'trulia'
+// });
+
+
+client.connect(err => {
+  if (err) {
+    console.log(err)
+  } else {
+    console.log('connected to pg!')
+  }
 });
-client.connect();
-const randomHomeId = client.query('SELECT id FROM homes ORDER BY random() LIMIT 1;')
 
 // HOMES
-const getRandomHome = async () => (
-  client.query(`SELECT * FROM homes WHERE id=${randomHomeId};`)
-);
+const getRandomHome = async () => {
+  const randomHomeId = Math.floor(Math.random() * 10000000);
+  return client.query(`SELECT * FROM homes WHERE id=${randomHomeId};`)
+};
 
 const getHome = async (id) => (
   client.query(`SELECT * FROM homes WHERE id=${id};`)
@@ -62,6 +80,7 @@ const getLoans = async () => (
 
 module.exports = {
   client,
+  getRandomHome,
   getHome,
   postHome,
   patchHome,
